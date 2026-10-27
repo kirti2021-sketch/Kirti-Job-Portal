@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Dashboard - JobPortal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f9fc;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 70px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 20px;
+        }
+
+        .logout {
+            background: #2563eb;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #666;
+        }
+
+        /* APPLICATION CARD */
+
+        .application {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+
+            border-radius: 10px;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .application h2 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .company {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .details {
+            line-height: 1.8;
+        }
+
+        .status {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 7px 14px;
+
+            background: #fff3cd;
+            color: #856404;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+        }
+
+        .resume {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 9px 15px;
+
+            background: #111827;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+        }
+
+        .resume:hover {
+            background: #2563eb;
+        }
+
+        /* NO APPLICATION */
+
+        .empty {
+            background: white;
+
+            padding: 50px;
+
+            text-align: center;
+
+            border-radius: 10px;
+
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .empty h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .browse {
+            display: inline-block;
+
+            padding: 11px 20px;
+
+            background: #2563eb;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111827;
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 60px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .heading h1 {
+                font-size: 26px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            JobPortal
+        </div>
+
+        <div>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a
+                href="{% url 'logout' %}"
+                class="logout"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+
+
+        <div class="heading">
+
+            <h1>
+                My Dashboard 👋
+            </h1>
+
+            <p>
+                Here you can see all the jobs you have applied for.
+            </p>
+
+        </div>
+
+
+        {% if applications %}
+
+
+            {% for application in applications %}
+
+
+                <div class="application">
+
+
+                    <h2>
+                        {{ application.job.title }}
+                    </h2>
+
+
+                    <p class="company">
+                        {{ application.job.company }}
+                    </p>
+
+
+                    <div class="details">
+
+                        <p>
+                            📍 <strong>Location:</strong>
+                            {{ application.job.location }}
+                        </p>
+
+                        <p>
+                            💰 <strong>Salary:</strong>
+                            {{ application.job.salary }}
+                        </p>
+
+                        <p>
+                            📧 <strong>Email:</strong>
+                            {{ application.email }}
+                        </p>
+
+                        <p>
+                            📱 <strong>Phone:</strong>
+                            {{ application.phone }}
+                        </p>
+
+                        <p>
+                            📅 <strong>Applied on:</strong>
+                            {{ application.applied_at|date:"d M Y, h:i A" }}
+                        </p>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="status">
+
+                        Status:
+                        {{ application.status }}
+
+                    </div>
+
+
+                    {% if application.resume %}
+
+                        <br>
+
+                        <a
+                            href="{{ application.resume.url }}"
+                            target="_blank"
+                            class="resume"
+                        >
+                            📄 View Resume
+                        </a>
+
+                    {% endif %}
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="empty">
+
+                <h2>
+                    No Applications Yet
+                </h2>
+
+                <p>
+                    You haven't applied for any job yet.
+                </p>
+
+                <a
+                    href="{% url 'home' %}"
+                    class="browse"
+                >
+                    Browse Jobs
+                </a>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 JobPortal. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

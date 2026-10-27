@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us - JobPortal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f9fc;
+            color: #222;
+        }
+
+        nav {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin-left: 25px;
+        }
+
+        .login {
+            background: #2563eb;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            text-align: center;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .feature h3 {
+            margin: 12px 0;
+            color: #2563eb;
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 700px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            JobPortal
+        </div>
+
+        <div>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="{% url 'login' %}" class="login">Login</a>
+        </div>
+
+    </nav>
+
+
+    <section class="hero">
+
+        <h1>About JobPortal</h1>
+
+        <p>
+            Connecting talented people with the right opportunities.
+        </p>
+
+    </section>
+
+
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Who We Are</h2>
+
+            <p>
+                JobPortal is an online job platform designed to help
+                job seekers discover suitable career opportunities
+                and apply for jobs easily.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Our Mission</h2>
+
+            <p>
+                Our mission is to make the job searching process
+                simple, accessible and convenient for everyone.
+                Job seekers can explore jobs, view job details,
+                submit applications and track their application status.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Why Choose JobPortal?</h2>
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div style="font-size:40px;">🔎</div>
+
+                    <h3>Easy Job Search</h3>
+
+                    <p>
+                        Find suitable jobs quickly using search
+                        and category options.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div style="font-size:40px;">📝</div>
+
+                    <h3>Easy Application</h3>
+
+                    <p>
+                        Apply for jobs and upload your resume
+                        through a simple application process.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div style="font-size:40px;">📊</div>
+
+                    <h3>Track Applications</h3>
+
+                    <p>
+                        Check your application status from
+                        your personal dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        © 2026 JobPortal. All Rights Reserved.
+
+    </footer>
+
+</body>
+</html>
